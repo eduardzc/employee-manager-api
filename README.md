@@ -73,60 +73,30 @@ SPRING_DATASOURCE_PASSWORD=springpwd
 │   │   │           └── employeemanager
 │   │   │               ├── EmployeemanagerApplication.java
 │   │   │               ├── controller
-│   │   │               │   └── EmployeeController.java
 │   │   │               ├── exception
-│   │   │               │   ├── BadRequestException.java
-│   │   │               │   ├── CustomErrorResponse.java
-│   │   │               │   ├── GlobalExceptionHandler.java
-│   │   │               │   └── ResourceNotFoundException.java
 │   │   │               ├── model
-│   │   │               │   └── Employee.java
 │   │   │               ├── repository
-│   │   │               │   └── EmployeeRepository.java
 │   │   │               └── service
-│   │   │                   ├── EmployeeService.java
-│   │   │                   └── EmployeeServiceImpl.java
 │   │   └── resources
-│   │       ├── application.properties
-│   │       ├── static
-│   │       └── templates
 │   └── test
 │       └── java
 │           └── com
 │               └── employee_api
 │                   └── employeemanager
 │                       └── EmployeemanagerApplicationTests.java
-└── target
-    ├── classes
-    │   ├── META-INF
-    │   │   ├── MANIFEST.MF
-    │   │   └── maven
-    │   │       └── com.employee-api
-    │   │           └── employeemanager
-    │   │               ├── pom.properties
-    │   │               └── pom.xml
-    │   ├── application.properties
-    │   └── com
-    │       └── employee_api
-    │           └── employeemanager
-    │               ├── EmployeemanagerApplication.class
-    │               ├── controller
-    │               │   └── EmployeeController.class
-    │               ├── exception
-    │               │   ├── BadRequestException.class
-    │               │   ├── CustomErrorResponse.class
-    │               │   ├── GlobalExceptionHandler.class
-    │               │   └── ResourceNotFoundException.class
-    │               ├── model
-    │               │   └── Employee.class
-    │               ├── repository
-    │               │   └── EmployeeRepository.class
-    │               └── service
-    │                   ├── EmployeeService.class
-    │                   └── EmployeeServiceImpl.class
-    └── test-classes
-        └── com
-            └── employee_api
-                └── employeemanager
-                    └── EmployeemanagerApplicationTests.class
 ```
+
+## 🧪 Testing the API
+
+You can test the API using Postman or curl.
+
+```bash
+curl -X POST http://localhost:8080/api/employees \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Ana","email":"ana@example.com","position":"Backend Developer"}'
+```
+
+## 👨‍💻 Author
+
+* Enrique Eduardo Rodriguez Couoh 
+[@eduardzc](https://github.com/eduardzc)
