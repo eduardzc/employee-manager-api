@@ -59,31 +59,26 @@ SPRING_DATASOURCE_PASSWORD=springpwd
 ```css
 .
 ├── Dockerfile
-├── HELP.md
 ├── README.md
 ├── docker-compose.yml
-├── mvnw
-├── mvnw.cmd
 ├── pom.xml
 ├── src
 │   ├── main
 │   │   ├── java
-│   │   │   └── com
-│   │   │       └── employee_api
-│   │   │           └── employeemanager
-│   │   │               ├── EmployeemanagerApplication.java
-│   │   │               ├── controller
-│   │   │               ├── exception
-│   │   │               ├── model
-│   │   │               ├── repository
-│   │   │               └── service
-│   │   └── resources
-│   └── test
-│       └── java
-│           └── com
-│               └── employee_api
-│                   └── employeemanager
-│                       └── EmployeemanagerApplicationTests.java
+│   │   │   └── com.employee_api.employeemanager
+│   │   │       ├── controller/
+│   │   │       ├── exception/
+│   │   │       ├── model/
+│   │   │       ├── repository/
+│   │   │       ├── service/
+│   │   │       └── EmployeemanagerApplication.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       ├── static/
+│   │       └── templates/
+│   └── test/
+│       └── java/com.employee_api.employeemanager/
+│           └── EmployeemanagerApplicationTests.java
 ```
 
 ## 🧪 Testing the API
