@@ -1,33 +1,51 @@
-HELP.md
+# === Java / Maven ===
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+*.class
+*.jar
+*.war
+*.ear
 
-### STS ###
-.apt_generated
-.classpath
+# === Maven Wrapper ===
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+
+# === Logs ===
+*.log
+logs/
+**/logs/
+
+# === Eclipse ===
+*.classpath
+*.project
+*.settings/
+.apt_generated/
 .factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+# === VS Code ===
 .vscode/
+
+# === IntelliJ IDEA (por si lo usas también) ===
+*.iml
+.idea/
+*.iws
+*.ipr
+out/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === Docker ===
+*.env
+docker-compose.override.yml
+
+# === Archivos temporales ===
+*.swp
+*~
+
+# === Node/npm (si usas herramientas front más adelante) ===
+node_modules/
+dist/
+
