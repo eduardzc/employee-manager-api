@@ -91,7 +91,20 @@ curl -X POST http://localhost:8080/api/employees \
   -d '{"name":"Ana","email":"ana@example.com","position":"Backend Developer"}'
 ```
 
+## 📘 API Documentation (Swagger UI)
+
+This project includes auto-generated API documentation using **OpenAPI 3.1** and **Swagger UI**.
+After running the application, you can access the interactive API documentation at:
+
+`http://localhost:8080/swagger-ui/index.html`
+
+From there, you can:
+- Explore all available endpoints
+- View request/response schemas
+- Test the API directly from your browser
+
+
+
 ## 👨‍💻 Author
 
-* Enrique Eduardo Rodriguez Couoh 
-[@eduardzc](https://github.com/eduardzc)
+* Enrique Eduardo Rodriguez Couoh [@eduardzc](https://github.com/eduardzc)
