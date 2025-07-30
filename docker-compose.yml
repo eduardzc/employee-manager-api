@@ -17,7 +17,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: spring_api_container
+        container_name: employee_api_container
         depends_on:
             db:
                 condition: service_started
