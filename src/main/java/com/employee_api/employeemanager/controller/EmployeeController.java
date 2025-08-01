@@ -5,6 +5,7 @@ import java.util.List;
 import com.employee_api.employeemanager.exception.CustomErrorResponse;
 import com.employee_api.employeemanager.service.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -35,22 +36,25 @@ public class EmployeeController {
 		this.service = service;
 	}
 	
-	@GetMapping
+
 	@Operation(summary = "Get all employees", description = "Return a list of all employees")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200",
-					description = "List of employees returned",
-					content = @Content(
-							mediaType = "application/json",
-							schema = @Schema(implementation = Employee.class)
-					)
-			)
-	})
+	@ApiResponses(
+			value = {
+				@ApiResponse(responseCode = "200",
+						description = "List of employees returned",
+						content = @Content(
+								mediaType = "application/json",
+								schema = @Schema(implementation = Employee.class)
+						)
+				)
+			}
+	)
+	@GetMapping
 	public List<Employee> getAllEmployees(){
 		return service.findAll();
 	}
 	
-	@GetMapping("/{id}")
+
 	@Operation(summary = "Get an employee by ID", description = "Returns a single employee by their ID")
 	@ApiResponses(
 			value = {
@@ -71,64 +75,82 @@ public class EmployeeController {
 					)
 			}
 	)
-	public Employee getEmployeeById(@PathVariable("id") Long id) {
+	@GetMapping("/{id}")
+	public Employee getEmployeeById(
+			@Parameter(description = "ID of the employee to retrieve")
+			@PathVariable("id") Long id) {
 		return service.findById(id);
 	}
 	
-	@PostMapping
+
 	@Operation(summary = "Create a new employee", description = "Adds a new employee to the database")
-	@ApiResponses(value = {
-			@ApiResponse(
-					responseCode = "201",
-					description = "Employee created successfully",
-					content = @Content(
-							mediaType = "application/json",
-							schema = @Schema(implementation = Employee.class)
+	@ApiResponses(
+			value = {
+					@ApiResponse(
+							responseCode = "201",
+							description = "Employee created successfully",
+							content = @Content(
+									mediaType = "application/json",
+									schema = @Schema(implementation = Employee.class)
+							)
+					),
+					@ApiResponse(responseCode = "400",
+							description = "Invalid employee data",
+							content = @Content(
+									mediaType = "application/json",
+									schema = @Schema(implementation = CustomErrorResponse.class)
+							)
 					)
-			),
-			@ApiResponse(responseCode = "400",
-					description = "Invalid employee data",
-					content = @Content(
-							mediaType = "application/json",
-							schema = @Schema(implementation = CustomErrorResponse.class)
-					)
-			)
-	})
-	public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
+			}
+	)
+	@PostMapping
+	public ResponseEntity<Employee> createEmployee(
+			@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "New employee to create",
+					required = true,
+					content = @Content(schema = @Schema(implementation = Employee.class)))
+			@Valid @RequestBody Employee employee) {
 		return ResponseEntity.ok(service.create(employee));
 	}
-	
-	@PutMapping("/{id}")
+
 	@Operation(summary = "Update an existing employee", description = "Updates the employee identified by the given ID")
-	@ApiResponses(value = {
-			@ApiResponse(
-					responseCode = "200",
-					description = "Employee updated successfully",
-					content = @Content(
-							mediaType = "application/json",
-							schema = @Schema(implementation = Employee.class)
+	@ApiResponses(
+			value = {
+					@ApiResponse(
+							responseCode = "200",
+							description = "Employee updated successfully",
+							content = @Content(
+									mediaType = "application/json",
+									schema = @Schema(implementation = Employee.class)
+							)
+					),
+					@ApiResponse(responseCode = "400",
+							description = "Invalid employee data",
+							content = @Content(
+									mediaType = "application/json",
+									schema = @Schema(implementation = CustomErrorResponse.class)
+							)
+					),
+					@ApiResponse(responseCode = "404",
+							description = "Employee not found",
+							content = @Content(
+									mediaType = "application/json",
+									schema = @Schema(implementation = CustomErrorResponse.class)
+							)
 					)
-			),
-			@ApiResponse(responseCode = "400",
-					description = "Invalid employee data",
-					content = @Content(
-							mediaType = "application/json",
-							schema = @Schema(implementation = CustomErrorResponse.class)
-					)
-			),
-			@ApiResponse(responseCode = "404",
-					description = "Employee not found",
-					content = @Content(
-							mediaType = "application/json",
-							schema = @Schema(implementation = CustomErrorResponse.class)
-					)
-			)
-	})
-	public ResponseEntity<Employee> updateEmployee(@PathVariable("id") Long id, @Valid @RequestBody Employee employee){
+			}
+	)
+	@PutMapping("/{id}")
+	public ResponseEntity<Employee> updateEmployee(
+			@Parameter(description = "ID of the employee to update")
+			@PathVariable("id") Long id,
+			@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Updated employee data",
+					required = true,
+					content = @Content(schema = @Schema(implementation = Employee.class)))
+			@Valid @RequestBody Employee employee){
 		return ResponseEntity.ok(service.update(id, employee));
 	}
 	
-	@DeleteMapping("/{id}")
+
 	@Operation(summary = "Delete an employee by ID", description = "Deletes a single employee by their ID")
 	@ApiResponses(
 			value = {
@@ -149,7 +171,10 @@ public class EmployeeController {
 					)
 			}
 	)
-	public ResponseEntity<Void> deleteEmployee(@PathVariable("id") Long id){
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteEmployee(
+			@Parameter(description = "ID of the employee to delete")
+			@PathVariable("id") Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
