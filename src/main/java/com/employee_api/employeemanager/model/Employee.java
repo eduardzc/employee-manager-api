@@ -11,10 +11,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="employees")
 @Schema(description = "Employees")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
 	
 	@Id
@@ -37,72 +45,5 @@ public class Employee {
 	@NotBlank(message="Every employee must have a position")
 	@Schema(description = "employees's job position", example = "Scrum Master")
 	private String position;
-	
-	public Employee() {
-	}
-
-	public Employee(Long id, @NotBlank(message = "Name is required") String name,
-			@NotBlank(message = "Email is required") @Email(message = "Email adress is not valid") String email,
-			@NotBlank(message = "Every employee must have a position") String position) {
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.position = position;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", email=" + email + ", position=" + position + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, id, name, position);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Employee other = (Employee) obj;
-		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
-				&& Objects.equals(position, other.position);
-	}
 
 }
